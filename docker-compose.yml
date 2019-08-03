@@ -1,0 +1,31 @@
+version: '2'
+services:
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpw
+      #MYSQL_DATABASE: foramtion
+      #MYSQL_USER: marwen
+      #MYSQL_PASSWORD: password
+      #MYSQL_ALLOW_EMPTY_PASSWORD
+      #MYSQL_RANDOM_ROOT_PASSWORD
+      #MYSQL_ONETIME_PASSWORD
+    volumes:
+      - ./db_data:/var/lib/mysql
+    network_mode: bridge
+
+  amp-stack:
+    container_name: ampstack
+    image: marwenmdoukhi/amp-stack:wordpress
+    #build: ./image-docker
+    links:
+      - mysql:mysql
+    depends_on:
+      - mysql
+    volumes:
+      - ./web_data:/var/www/html
+    ports:
+      - 80:80
+    network_mode: bridge  
