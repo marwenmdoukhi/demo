@@ -3,13 +3,13 @@ set -euo pipefail
 wordpress_initilizing(){
 	if [[ -d "/var/www/html" ]]; then
 		cd /var/www
-		wget https://fr.wordpress.org/latest-fr_FR.zip
-		unzip latest-fr_FR.zip
-		cd wordpress
+		composer create-project symfony/website-skeleton symfony
+		#unzip latest-fr_FR.zip
+		cd symfony
 		mv * ../html
-		echo "[OK] Wordpress seccessfly initilized"
+		echo "[OK] symfony seccessfly initilized"
 	else
-		echo "[NOTICE] Wordpress alrady initilized ..."
+		echo "[NOTICE] symfony alrady initilized ..."
 	fi
 }
 if [[ "$1" == apache2* ]]; then

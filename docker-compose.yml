@@ -18,7 +18,7 @@ services:
 
   amp-stack:
     container_name: ampstack
-    image: marwenmdoukhi/amp-stack:wordpress
+    image: marwenmdoukhi/amp-stack
     #build: ./image-docker
     links:
       - mysql:mysql
